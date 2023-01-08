@@ -1,12 +1,12 @@
 
-data "tls_certificate" "gitlab" {
-  url = var.gitlab_url
+data "tls_certificate" "tfc_certificate" {
+  url = "https://app.terraform.io"
 }
 
 resource "aws_iam_openid_connect_provider" "default" {
   url             = "https://app.terraform.io"
   client_id_list  = ["aws.workload.identity"]
-  thumbprint_list = ["${data.tls_certificate.tfc_certificate.certificates.0.sha1_fingerprint}"]
+  thumbprint_list = []
 }
 
 
