@@ -14,8 +14,9 @@ module "tfc_workload_identity_role" {
 
   role_name        = var.tfc_workload_identity_role
   role_description = var.tfc_workload_identity_role_description
-  role_policy_arns              = var.tfc_workload_identity_role_policy_arns
-
+  role_policy_arns = var.tfc_workload_identity_role_policy_arns
+}
+  
   resource "aws_iam_role" "role" {
   name = "test-role"
 
