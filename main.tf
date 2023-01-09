@@ -20,12 +20,12 @@ resource "aws_iam_role" "role" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Federated": "${aws_iam_openid_connect_provider.tfc_provider.arn}"
+        "Federated":[aws_iam_openid_connect_provider.tfc_provider.arn]
       },
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
         "StringLike": {
-          "app.terraform.io:aud": "${one(aws_iam_openid_connect_provider.tfc_provider.client_id_list)}",
+          "app.terraform.io:aud": "${one(aws_iam_openid_connect_provider.tfc_provider.var.aud_value)}",
           "app.terraform.io:sub": "organization:Demo-Lydia:workspace:OIDC:run_phase:*"
         }
       }
@@ -57,5 +57,6 @@ EOF
 
 resource "aws_iam_role_policy_attachment" "test-attach" {
   role       = aws_iam_role.role.name
-  policy_arn = aws_iam_policy.policy.arn
+  policy_
+  = aws_iam_policy.policy.arn
 }
