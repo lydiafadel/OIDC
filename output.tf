@@ -1,7 +1,7 @@
-output "ROLE_ARN"
+output "ROLE_ARN" {
   value       = module.oidc.ROLE_ARN
   description = "role"
-    
+}
 
 output "tfc_workload_identity_role_arn" {
   value       = module.tfc_workload_identity_role.iam_role_arn
