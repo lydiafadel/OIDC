@@ -5,7 +5,7 @@ data "tls_certificate" "tfc_certificate" {
 
 resource "aws_iam_openid_connect_provider" "default" {
   url             = var.create_tfc_oidc_provider
-  client_id_list  = ["aws.workload.identity"]
+  client_id_list  = [var.aud_value]
   thumbprint_list = []
 }
 
