@@ -8,8 +8,15 @@ resource "aws_iam_openid_connect_provider" "default" {
   thumbprint_list = []
 }
 
+module "tfc_workload_identity_role" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
+  version = "~> 5.3.0"
 
-resource "aws_iam_role" "role" {
+  role_name        = var.tfc_workload_identity_role
+  role_description = var.tfc_workload_identity_role_description
+  role_policy_arns              = var.tfc_workload_identity_role_policy_arns
+
+  resource "aws_iam_role" "role" {
   name = "test-role"
 
   assume_role_policy = <<EOF
